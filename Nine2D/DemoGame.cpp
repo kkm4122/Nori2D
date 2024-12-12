@@ -3,25 +3,19 @@
 
 DemoGame::DemoGame() 
 {
-	mRenderer = new Dx2DRenderer;
 	sample();
-
-	CBChangesEveryFrame cb;
-	cb.vMeshColor = {0.5f, 0.5f, 0.5f, 1.f};
-	mRenderer->mCB.SetData(cb);
 }
 
 DemoGame::~DemoGame() 
 {
-	SAFE_DELETE(mRenderer);
 }
 
 void DemoGame::Draw()
 {
 	//for(int i=0; i<2000;++i)
+	for(int i=0; i<mRenderableItemList.size(); ++i)
 	{
-		mRenderer->Draw(&mSample);
-
+		Dx2DRenderer::g->Draw(mRenderableItemList[i]);
 	}
 }
 
@@ -41,6 +35,10 @@ void DemoGame::Update()
 
 void DemoGame::sample()
 {
+	CBChangesEveryFrame cb;
+	cb.vMeshColor = {0.5f, 0.5f, 0.5f, 1.f};
+	Dx2DRenderer::g->mCB.SetData(cb);
+
 	mSample.x = g_Dx11.half_width;
 	mSample.y = g_Dx11.half_height;
 	mSample.w = 100;
@@ -48,7 +46,9 @@ void DemoGame::sample()
 	mSample.ancherX = 0.5f;
 	mSample.ancherY = 0.5f;
 	mSample.color = {1.0f, 1.0f, 1.0f, 1.0f};
-	mSample.tex = mRenderer->mTextureRV;
+	mSample.tex = Dx2DRenderer::g->mTextureRV;
+
+	mRenderableItemList.push_back(&mSample);
 }
 
 

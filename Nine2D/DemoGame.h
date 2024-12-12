@@ -5,8 +5,9 @@
 class DemoGame :
     public IDraw
 {
-	Dx2DRenderer* mRenderer;
-	Dx2DRenderable  mSample;
+	Dx2DRenderable mSample;
+	std::vector<Dx2DRenderable*>  mRenderableItemList;
+
 	int count = 0;
 public:
 	DemoGame();

@@ -6,6 +6,7 @@
 
 using namespace DirectX;
 
+Dx2DRenderer* Dx2DRenderer::g = nullptr;
 
 
 HRESULT Dx2DRenderer::create()

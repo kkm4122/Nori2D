@@ -56,7 +56,9 @@ class Dx2DRenderer
 	HRESULT createCB();
 	HRESULT createTex();
 public:
-	Dx2DRenderer() { create(); }
+	static Dx2DRenderer* g;
+
+	Dx2DRenderer() { g=this; create(); }
 	~Dx2DRenderer();
 	void Draw(Dx2DRenderable* sprite);
 
