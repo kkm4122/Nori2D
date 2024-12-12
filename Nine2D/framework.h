@@ -14,7 +14,7 @@
 #include <sstream>
 #include <fstream>
 
-
+#include "Components.h"
 
 
 #pragma comment(lib, "d3d11.lib")

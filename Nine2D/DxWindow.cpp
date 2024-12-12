@@ -239,7 +239,8 @@ HRESULT DxWindow::MessageLoop()
 			{
 				//SystemsPlan::Plan->CreateModelGeometry(registry);
 			}			
-
+			if(mDrawObj) mDrawObj->Update();
+			
 			Draw();
 			// Draw(&mycompRender, obj_shaderClass, &cameraComponents, &mycompshaderstruct, &mycompPixel, &mycompvsStruct, &mycompPSStruct, obj_time, obj_SkyShader, obj_BoneDatMesh);
 

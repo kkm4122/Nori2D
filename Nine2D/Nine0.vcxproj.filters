@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -16,30 +8,18 @@
     <Filter Include="tk">
       <UniqueIdentifier>{63bd5f89-b9c0-4c4f-aca9-7ffa96f468df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="shader file">
+      <UniqueIdentifier>{b56ff540-3143-49d7-abcf-b0c66c0095d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WinMain">
+      <UniqueIdentifier>{26f82463-50a7-41c6-93c4-47332c7b3485}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Nine0.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DxWindow.h" />
-    <ClInclude Include="pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Components.h" />
     <ClInclude Include="DxShader.h" />
     <ClInclude Include="Dx2DRenderer.h" />
-    <ClInclude Include="IDraw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tk\DDS.h">
       <Filter>tk</Filter>
     </ClInclude>
@@ -63,15 +43,26 @@
     </ClInclude>
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="Dx2DRenderable.h" />
+    <ClInclude Include="DemoGame.h" />
+    <ClInclude Include="framework.h">
+      <Filter>WinMain</Filter>
+    </ClInclude>
+    <ClInclude Include="Nine0.h">
+      <Filter>WinMain</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>WinMain</Filter>
+    </ClInclude>
+    <ClInclude Include="IDraw.h" />
+    <ClInclude Include="Resource.h">
+      <Filter>WinMain</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>WinMain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Nine0.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DxWindow.cpp" />
-    <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DxShader.cpp" />
     <ClCompile Include="Dx2DRenderer.cpp" />
     <ClCompile Include="tk\DDSTextureLoader.cpp">
@@ -82,6 +73,13 @@
     </ClCompile>
     <ClCompile Include="tk\WICTextureLoader.cpp">
       <Filter>tk</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoGame.cpp" />
+    <ClCompile Include="Nine0.cpp">
+      <Filter>WinMain</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>WinMain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,8 +96,12 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="PS.hlsl" />
-    <FxCompile Include="VS.hlsl" />
+    <FxCompile Include="PS.hlsl">
+      <Filter>shader file</Filter>
+    </FxCompile>
+    <FxCompile Include="VS.hlsl">
+      <Filter>shader file</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="tk\SimpleMath.inl">
