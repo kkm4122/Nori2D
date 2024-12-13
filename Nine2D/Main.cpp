@@ -23,15 +23,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     g_Dx11.dxFeatureLevel = D3D_FEATURE_LEVEL::D3D_FEATURE_LEVEL_11_1;
     g_Dx11.width = 1280;
     g_Dx11.height = 720;
-    g_Dx11.half_width = 1280 / 2;
-    g_Dx11.half_height = 720 / 2;
+    g_Dx11.half_width = (1280 / 2);
+    g_Dx11.half_height = (720 / 2);
 
     DxWindow* gDx = new DxWindow;
 	Dx2DRenderer* gRender = new Dx2DRenderer;
-
     DemoGame* demo = new DemoGame;
-    gDx->mDrawObj = demo;
-    gDx->Run();
+
+    gDx->Run(demo,gRender);
 
     delete demo;
     delete gRender;

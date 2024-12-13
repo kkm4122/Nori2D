@@ -10,16 +10,16 @@ DemoGame::~DemoGame()
 {
 }
 
-void DemoGame::Draw()
+void DemoGame::Draw(IRenderer* rd)
 {
 	//for(int i=0; i<2000;++i)
 	for(int i=0; i<mRenderableItemList.size(); ++i)
 	{
-		Dx2DRenderer::g->Draw(mRenderableItemList[i]);
+		rd->Draw(mRenderableItemList[i]);
 	}
 }
 
-void DemoGame::Update()
+void DemoGame::Update(float delta)
 {
 	if (++count < 100) return;
 

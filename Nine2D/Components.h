@@ -31,8 +31,8 @@ struct Dx11Vars
 	int width;
 	int height;
 
-	int half_width;
-	int half_height;
+	float half_width;
+	float half_height;
 
 	HINSTANCE	hInstance;	
 	std::string titleBarText;

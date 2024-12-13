@@ -1,7 +1,9 @@
 #pragma once
 #include "Components.h"
 #include <functional>
-#include "IDraw.h"
+#include "IGame.h"
+
+class IRenderer;
 
 class DxWindow
 {
@@ -9,7 +11,8 @@ public:
 	DxWindow();
 	~DxWindow();
 
-	IDraw* mDrawObj = nullptr;
+	IGame* mGameObj = nullptr;
+	IRenderer* mRenderer = nullptr;
 
 	static DxWindow* g;
 
@@ -22,9 +25,10 @@ public:
 
 	HRESULT InitWindow();
 	HRESULT InitDirectX();	
-	HRESULT Run();
+	HRESULT Run(IGame* game, IRenderer* rd);
+	void Update();
 	void Draw();
-	HRESULT MessageLoop();
+	void MessageLoop();
 
 	LRESULT onMessage(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 

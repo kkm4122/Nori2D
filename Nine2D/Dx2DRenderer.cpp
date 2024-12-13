@@ -99,6 +99,8 @@ void Dx2DRenderer::Draw(Dx2DRenderable* sp)
 
 HRESULT Quad::create()
 {
+	HRESULT hr;
+
 	mVertexCount = 4;
 
     D3D11_BUFFER_DESC bd;
@@ -109,10 +111,8 @@ HRESULT Quad::create()
     bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;       // use as a vertex buffer
     bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;    // allow CPU to write in buffer
 
-    g_Dx11.device->CreateBuffer(&bd, NULL, &mVertexBuffer);       // create the buffer
-
-
-	return E_NOTIMPL;
+    hr = g_Dx11.device->CreateBuffer(&bd, NULL, &mVertexBuffer);       // create the buffer
+	return hr;
 }
 
 HRESULT Quad::createInputLayout(ID3DBlob* mBlob)
@@ -144,17 +144,17 @@ Quad::~Quad()
 
 void Quad::Update(Dx2DRenderable* rd)
 {
-	int ax = (rd->w * rd->ancherX);
-	int ay = (rd->h * rd->ancherY);
-	int lx = rd->x - ax;
-	int ty = rd->y + ay;
-	int rx = lx + rd->w;
-	int by = ty - rd->h;
+	float ax = (rd->w * rd->ancherX);
+	float ay = (rd->h * rd->ancherY);
+	float lx = rd->x - ax;
+	float ty = rd->y + ay;
+	float rx = lx + rd->w;
+	float by = ty - rd->h;
 
-	float flx =  (float)(lx - g_Dx11.half_width) / (float)g_Dx11.half_width;
-	float frx = (float)(rx - g_Dx11.half_width) / (float)g_Dx11.half_width;
-	float fty = (float)(ty - g_Dx11.half_height) / (float)g_Dx11.half_height;
-	float fby = (float)(by - g_Dx11.half_height) / (float)g_Dx11.half_height;
+	float flx = (lx - g_Dx11.half_width) / g_Dx11.half_width;
+	float frx = (rx - g_Dx11.half_width) / g_Dx11.half_width;
+	float fty = (ty - g_Dx11.half_height) / g_Dx11.half_height;
+	float fby = (by - g_Dx11.half_height) / g_Dx11.half_height;
 
 
     VERTEX OurVertices[4] =
@@ -184,7 +184,7 @@ void Quad::Draw(Dx2DRenderable* sp)
 	g_Dx11.context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 }
 
-// L"Carrot.png"
+
 HRESULT DxTexture::create(const WCHAR* fileName)
 {
 	HRESULT hr;
@@ -192,8 +192,6 @@ HRESULT DxTexture::create(const WCHAR* fileName)
 	hr = CreateWICTextureFromFile(g_Dx11.device, fileName, nullptr, &mTextureRV);
 	if (FAILED(hr))
 		return hr;
-
-
 
 }
 

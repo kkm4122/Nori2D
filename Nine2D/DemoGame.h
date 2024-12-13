@@ -1,21 +1,22 @@
 #pragma once
-#include "IDraw.h"
+#include "IGame.h"
 #include "Dx2DRenderer.h"
 
-class DemoGame :
-    public IDraw
+class DemoGame : public IGame
 {
 	Dx2DRenderable mSample;
 	std::vector<Dx2DRenderable*>  mRenderableItemList;
-
 	int count = 0;
+	IRenderer* mRD = nullptr;
+
 public:
 	DemoGame();
 	~DemoGame();
-
 	void sample();
-	void Draw() override;
-	void Update() override;
+
+	void Update(float delta) override;
+	void Draw(IRenderer* rd) override;
+
 
 };
 

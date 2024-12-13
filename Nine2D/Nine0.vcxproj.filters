@@ -53,7 +53,7 @@
     <ClInclude Include="pch.h">
       <Filter>WinMain</Filter>
     </ClInclude>
-    <ClInclude Include="IDraw.h" />
+    <ClInclude Include="IGame.h" />
     <ClInclude Include="Resource.h">
       <Filter>WinMain</Filter>
     </ClInclude>

@@ -140,7 +140,7 @@
     <ClInclude Include="DxShader.h" />
     <ClInclude Include="DxWindow.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="IDraw.h" />
+    <ClInclude Include="IGame.h" />
     <ClInclude Include="Nine0.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Dx2DRenderable.h" />

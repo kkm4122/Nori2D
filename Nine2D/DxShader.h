@@ -1,10 +1,5 @@
 #pragma once
 
-class DxShader
-{
-public:
-	
-};
 
 class VsShader
 {

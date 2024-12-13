@@ -185,8 +185,11 @@ HRESULT DxWindow::InitDirectX()
 }
 
 
-HRESULT DxWindow::Run()
+HRESULT DxWindow::Run(IGame* game, IRenderer* rd)
 {
+	mRenderer = rd;
+	mGameObj = game;
+
  	// Grab the start time now that
 	// the game loop is running
 	__int64 now;
@@ -205,7 +208,8 @@ HRESULT DxWindow::Run()
 	return E_NOTIMPL;
 }
 
-HRESULT DxWindow::MessageLoop()
+
+void DxWindow::MessageLoop()
 {
 
 	MSG msg = {};
@@ -238,8 +242,7 @@ HRESULT DxWindow::MessageLoop()
 				//SystemsPlan::Plan->CreateModelGeometry(registry);
 			}		
 			*/
-			if(mDrawObj) mDrawObj->Update();
-			
+			Update();
 			Draw();
 			// Draw(&mycompRender, obj_shaderClass, &cameraComponents, &mycompshaderstruct, &mycompPixel, &mycompvsStruct, &mycompPSStruct, obj_time, obj_SkyShader, obj_BoneDatMesh);
 
@@ -255,8 +258,6 @@ HRESULT DxWindow::MessageLoop()
 	ID3D11Debug::ReportLiveDeviceObjects(D3D11_RLDO_DETAIL);
 	m_d3dDebug->Release();
 	*/
-
-	return E_NOTIMPL;
 }
 
 
@@ -377,6 +378,12 @@ void DxWindow::OnMouseWheel(float wheelDelta, int x, int y)
 
 }
 
+
+void DxWindow::Update()
+{
+	if(mGameObj) mGameObj->Update(g_Time.deltaTime);
+}
+
 void DxWindow::Draw()
 {
 	const float color[4] = { 0.4f, 0.4f, 0.4f, 0.0f };
@@ -389,7 +396,7 @@ void DxWindow::Draw()
 												 1.0f,
 												 0);
 
-	if(mDrawObj) mDrawObj->Draw();
+	if(mGameObj) mGameObj->Draw(mRenderer);
 
 
 	g_Dx11.swapChain->Present(0, 0);

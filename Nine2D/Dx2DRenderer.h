@@ -1,6 +1,6 @@
 #pragma once
 #include "DxShader.h"
-#include "IDraw.h"
+#include "IGame.h"
 #include "ConstantBuffer.h"
 #include "Dx2DRenderable.h"
 
@@ -60,7 +60,8 @@ public:
 
 };
 
-class Dx2DRenderer
+
+class Dx2DRenderer : public IRenderer
 {
 	HRESULT create();
 
@@ -71,17 +72,17 @@ public:
 
 	Dx2DRenderer() { g=this; create(); }
 	~Dx2DRenderer();
-	void Draw(Dx2DRenderable* sprite);
+	void Draw(Dx2DRenderable* sprite) override;
 
 public:
 	VsShader*	mVS = nullptr;
 	PsShader*	mPS = nullptr;
-	Quad*	mQuad = nullptr;
-	DxTexture* mTex = nullptr;
+	Quad*		mQuad = nullptr;
+	DxTexture*	mTex = nullptr;
 	ConstantBuffer<CBChangesEveryFrame> mCB;
 
 	ID3D11SamplerState* mSamplerLinear = nullptr;
-	ID3D11BlendState* mBlendState = nullptr;
+	ID3D11BlendState*	mBlendState = nullptr;
 };
 
 

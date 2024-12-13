@@ -4,8 +4,8 @@ class DxTexture;
 
 struct Dx2DRenderable 
 {
-	int x,y;
-	int w,h;
+	float x,y;
+	float w,h;
 	float ancherX, ancherY;
 	XFloat4 color;
 
@@ -13,4 +13,9 @@ struct Dx2DRenderable
 };
 
 
+class IRenderer
+{
+public:
+	virtual void Draw(Dx2DRenderable* sprite) = 0;
+};
 
