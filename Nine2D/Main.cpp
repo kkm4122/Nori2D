@@ -27,14 +27,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     g_Dx11.half_height = 720 / 2;
 
     DxWindow* gDx = new DxWindow;
-	// Dx2DRenderer* gRender = new Dx2DRenderer;
+	Dx2DRenderer* gRender = new Dx2DRenderer;
 
-    // DemoGame* demo = new DemoGame;
-    // gDx->mDrawObj = demo;
+    DemoGame* demo = new DemoGame;
+    gDx->mDrawObj = demo;
     gDx->Run();
 
-    // delete demo;
-    // delete gRender;
+    delete demo;
+    delete gRender;
     delete gDx;
 
     return 0;

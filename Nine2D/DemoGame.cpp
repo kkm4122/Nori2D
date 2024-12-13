@@ -46,7 +46,7 @@ void DemoGame::sample()
 	mSample.ancherX = 0.5f;
 	mSample.ancherY = 0.5f;
 	mSample.color = {1.0f, 1.0f, 1.0f, 1.0f};
-	mSample.tex = Dx2DRenderer::g->mTextureRV;
+	mSample.tex = Dx2DRenderer::g->mTex;
 
 	mRenderableItemList.push_back(&mSample);
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-
+class DxTexture;
 
 struct Dx2DRenderable 
 {
@@ -9,7 +9,7 @@ struct Dx2DRenderable
 	float ancherX, ancherY;
 	XFloat4 color;
 
-	ID3D11ShaderResourceView* tex;
+	DxTexture* tex;
 };
 
 

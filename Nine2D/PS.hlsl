@@ -17,5 +17,6 @@ struct VertexToPixel
 //--------------------------------------------------------------------------------------
 float4 main(VertexToPixel input) : SV_TARGET
 {
+	// return float4(1.0f, 0.5f, 0.5f, 1.f);
 	return txDiffuse.Sample(samLinear, input.Tex) * vMeshColor;
 }

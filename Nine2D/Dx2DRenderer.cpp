@@ -16,9 +16,13 @@ HRESULT Dx2DRenderer::create()
 	mVS = new VsShader(L"VS.cso");
 	mPS = new PsShader(L"PS.cso");
 	mQuad = new Quad;
+	mTex = new DxTexture(L"Carrot.png");
 
-	createCB();
-	createTex();
+	if (!mQuad->mVertexLayout) 
+		mQuad->createInputLayout(mVS->mBlob);
+
+	hr = mCB.Create();
+	hr = createSampler();
 	hr = createBS();
 
 	return hr;
@@ -29,30 +33,24 @@ HRESULT Dx2DRenderer::createBS()
 	HRESULT hr;
 
 	CD3D11_BLEND_DESC desc;
+	desc.AlphaToCoverageEnable = false;
+	desc.IndependentBlendEnable = false;
 	desc.RenderTarget[0].BlendEnable = true;
 	desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
 	desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
 	desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
 	desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
 	desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 
 	hr = g_Dx11.device->CreateBlendState(&desc, &mBlendState);
 	return hr;
 }
 
-HRESULT Dx2DRenderer::createCB()
-{
-	return mCB.Create(); 
-}
-
-HRESULT Dx2DRenderer::createTex()
+HRESULT Dx2DRenderer::createSampler()
 {
 	HRESULT hr;
-
-	hr = CreateWICTextureFromFile(g_Dx11.device, L"Carrot.png", nullptr, &mTextureRV);
-	if (FAILED(hr))
-		return hr;
-
 	// Create the sample state
 	D3D11_SAMPLER_DESC sampDesc = {};
 	sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
@@ -75,30 +73,23 @@ Dx2DRenderer::~Dx2DRenderer()
 	SAFE_DELETE(mVS);
 	SAFE_DELETE(mPS);
 	SAFE_DELETE(mQuad);
+	SAFE_DELETE(mTex);
 }
 
 void Dx2DRenderer::Draw(Dx2DRenderable* sp)
 {
-	mQuad->Update(sp);
+	mQuad->Draw(sp);
 
 	CBChangesEveryFrame cb;
 	cb.vMeshColor = sp->color;
 	mCB.SetData(cb);
 
-	if( !mQuad->mVertexLayout ) mQuad->createInputLayout(mVS->mBlob);
-	g_Dx11.context->IASetInputLayout(mQuad->mVertexLayout);
-
-	UINT stride = sizeof(VERTEX);
-	UINT offset = 0;
-	g_Dx11.context->IASetVertexBuffers(0, 1, &mQuad->mVertexBuffer, &stride, &offset);
-	g_Dx11.context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-
-	g_Dx11.context->VSSetShader(mVS->mVertexShader, 0, 0);
+	mVS->Draw();
+	mPS->Draw();
 
 	g_Dx11.context->PSSetConstantBuffers(0, 1, &mCB.mConstantBuffer);
-	g_Dx11.context->PSSetShaderResources(0, 1, &sp->tex);
 	g_Dx11.context->PSSetSamplers(0, 1, &mSamplerLinear);
-    g_Dx11.context->PSSetShader(mPS->mPixelShader, 0, 0);
+	sp->tex->Draw();
 
 	g_Dx11.context->OMSetBlendState(mBlendState, 0, 0xFFFFFFFF);
 	g_Dx11.context->Draw(mQuad->mVertexCount, 0);
@@ -141,12 +132,14 @@ HRESULT Quad::createInputLayout(ID3DBlob* mBlob)
 										  mBlob->GetBufferSize(),
 										  &mVertexLayout);
 
-	return E_NOTIMPL;
+	return hr;
 }
 
 Quad::~Quad()
 {
 	SAFE_RELEASE(mVertexBuffer)
+	SAFE_RELEASE(mVertexLayout)
+
 }
 
 void Quad::Update(Dx2DRenderable* rd)
@@ -179,4 +172,34 @@ void Quad::Update(Dx2DRenderable* rd)
 
 }
 
+void Quad::Draw(Dx2DRenderable* sp)
+{
+	Update(sp);
+
+	g_Dx11.context->IASetInputLayout(mVertexLayout);
+
+	UINT stride = sizeof(VERTEX);
+	UINT offset = 0;
+	g_Dx11.context->IASetVertexBuffers(0, 1, &mVertexBuffer, &stride, &offset);
+	g_Dx11.context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+}
+
+// L"Carrot.png"
+HRESULT DxTexture::create(const WCHAR* fileName)
+{
+	HRESULT hr;
+
+	hr = CreateWICTextureFromFile(g_Dx11.device, fileName, nullptr, &mTextureRV);
+	if (FAILED(hr))
+		return hr;
+
+
+
+}
+
+void DxTexture::Draw()
+{
+	g_Dx11.context->PSSetShaderResources(0, 1, &mTextureRV);
+
+}
 

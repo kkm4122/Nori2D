@@ -39,6 +39,7 @@ public:
 	HRESULT createInputLayout(ID3DBlob* mBlob);
 
 	void Update(Dx2DRenderable* rd);
+	void Draw(Dx2DRenderable* sp);
 
 	int mVertexCount = 0;
 	ID3D11Buffer *mVertexBuffer = nullptr;  
@@ -47,14 +48,24 @@ public:
 };
 
 
+class DxTexture
+{
+	HRESULT create(const WCHAR* fileName);
+public:
+	DxTexture(const WCHAR* fileName) { create(fileName); }
+	~DxTexture() { SAFE_RELEASE(mTextureRV); }
+	void Draw();
+
+	ID3D11ShaderResourceView* mTextureRV = nullptr;
+
+};
 
 class Dx2DRenderer
 {
 	HRESULT create();
 
 	HRESULT createBS();
-	HRESULT createCB();
-	HRESULT createTex();
+	HRESULT createSampler();
 public:
 	static Dx2DRenderer* g;
 
@@ -66,8 +77,9 @@ public:
 	VsShader*	mVS = nullptr;
 	PsShader*	mPS = nullptr;
 	Quad*	mQuad = nullptr;
+	DxTexture* mTex = nullptr;
 	ConstantBuffer<CBChangesEveryFrame> mCB;
-	ID3D11ShaderResourceView* mTextureRV = nullptr;
+
 	ID3D11SamplerState* mSamplerLinear = nullptr;
 	ID3D11BlendState* mBlendState = nullptr;
 };
