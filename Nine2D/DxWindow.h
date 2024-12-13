@@ -17,10 +17,10 @@ public:
 	static DxWindow* g;
 
 	static LRESULT CALLBACK WindowProc(
-		HWND hWnd,		// Window handle
-		UINT uMsg,		// Message
-		WPARAM wParam,	// Message's first parameter
-		LPARAM lParam	// Message's second parameter
+		HWND hWnd,		
+		UINT uMsg,		
+		WPARAM wParam,	
+		LPARAM lParam	
 		);
 
 	HRESULT InitWindow();

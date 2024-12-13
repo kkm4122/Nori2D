@@ -3,7 +3,7 @@
 #include "Dx2DRenderer.h"
 #include "Actor.h"
 
-MoveComp mv;
+MoveAction mv;
 
 DemoGame::DemoGame() 
 {
@@ -18,10 +18,9 @@ DemoGame::~DemoGame()
 
 void DemoGame::Draw(IRenderer* rd)
 {
-	//for(int i=0; i<2000;++i)
 	for(int i=0; i<mActorList.size(); ++i)
 	{
-		rd->Draw(mActorList[i]);
+		rd->Draw(&mActorList[i]->mRd);
 	}
 }
 
@@ -37,18 +36,19 @@ void DemoGame::Update(float delta)
 void DemoGame::sample()
 {
 	Actor* aa = new Actor;
-	aa->x = 0;
-	aa->y = 0;
-	aa->w = 100;
-	aa->h = 100;
-	aa->ancherX = 0.5f;
-	aa->ancherY = 0.5f;
+	aa->mRd.x = g_Dx11.half_width;
+	aa->mRd.y = g_Dx11.half_height;
+	aa->mRd.w = 100;
+	aa->mRd.h = 100;
+	aa->mRd.ancherX = 0.5f;
+	aa->mRd.ancherY = 0.5f;
 	aa->mSpeed = {10.f,5.f};
-	aa->color = {1.0f, 1.0f, 1.0f, 1.0f};
-	aa->texName = L"Carrot.png";
-	aa->tex = nullptr;
+	aa->mRd.color = {1.0f, 1.0f, 1.0f, 1.0f};
+	aa->mRd.tex.mName = L"Carrot.png";
 
-	aa->mCompList.push_back(&mv);
+	auto mv1 = new MoveAction;
+	mv1->RandomTarget(aa);
+	aa->mCompList.push_back(mv1);
 
 	mActorList.push_back(aa);
 }

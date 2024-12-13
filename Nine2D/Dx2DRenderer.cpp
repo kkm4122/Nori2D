@@ -74,9 +74,7 @@ HRESULT Dx2DRenderer::createSampler()
 
 Dx2DRenderer::~Dx2DRenderer()
 {
-	for (auto tex : mTexMap) {
-		delete tex.second;
-	}
+
 
 	SAFE_DELETE(mVS);
 	SAFE_DELETE(mPS);
@@ -84,27 +82,13 @@ Dx2DRenderer::~Dx2DRenderer()
 }
 
 
-DxTexture* Dx2DRenderer::GetTexture(const WCHAR* fileName)
-{
-	std::map<std::wstring, DxTexture*>::iterator it
-		= mTexMap.find(fileName);
-	if (it != mTexMap.end())
-	{
-		return it->second;
-	}
-	else 
-	{
-		DxTexture* tex = new DxTexture(fileName);
-		mTexMap[fileName] = tex;
-		return tex;
-	}
-
-}
 
 
 void Dx2DRenderer::Draw(Dx2DRenderable* sp)
 {
-	if(!sp->tex) sp->tex = GetTexture(sp->texName);
+	if(sp->tex.isNull()) {
+		DxTextureMgr::get()->New(sp->tex);
+	}
 
 	mQuad->Draw(sp);
 
@@ -117,7 +101,7 @@ void Dx2DRenderer::Draw(Dx2DRenderable* sp)
 
 	g_Dx11.context->PSSetConstantBuffers(0, 1, &mCB.mConstantBuffer);
 	g_Dx11.context->PSSetSamplers(0, 1, &mSamplerLinear);
-	sp->tex->Draw();
+	sp->tex.Draw();
 
 	g_Dx11.context->OMSetBlendState(mBlendState, 0, 0xFFFFFFFF);
 	g_Dx11.context->Draw(mQuad->mVertexCount, 0);
@@ -213,19 +197,4 @@ void Quad::Draw(Dx2DRenderable* sp)
 }
 
 
-HRESULT DxTexture::create(const WCHAR* fileName)
-{
-	HRESULT hr;
-
-	hr = CreateWICTextureFromFile(g_Dx11.device, fileName, nullptr, &mTextureRV);
-	if (FAILED(hr))
-		return hr;
-
-}
-
-void DxTexture::Draw()
-{
-	g_Dx11.context->PSSetShaderResources(0, 1, &mTextureRV);
-
-}
 

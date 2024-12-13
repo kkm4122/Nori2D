@@ -3,7 +3,7 @@
 #include "IGame.h"
 #include "ConstantBuffer.h"
 #include "Dx2DRenderable.h"
-
+#include "DxTexture.h"
 
 struct VS_CONSTANT_BUFFER
 {
@@ -48,18 +48,6 @@ public:
 };
 
 
-class DxTexture
-{
-	HRESULT create(const WCHAR* fileName);
-public:
-	DxTexture(const WCHAR* fileName) { create(fileName); }
-	~DxTexture() { SAFE_RELEASE(mTextureRV); }
-	void Draw();
-
-	ID3D11ShaderResourceView* mTextureRV = nullptr;
-
-};
-
 
 class Dx2DRenderer : public IRenderer
 {
@@ -72,7 +60,6 @@ public:
 
 	Dx2DRenderer() { g=this; create(); }
 	~Dx2DRenderer();
-	DxTexture* GetTexture(const WCHAR* fileName);
 	void Draw(Dx2DRenderable* sprite) override;
 
 public:
@@ -84,7 +71,6 @@ public:
 	ID3D11SamplerState* mSamplerLinear = nullptr;
 	ID3D11BlendState*	mBlendState = nullptr;
 
-	std::map<std::wstring, DxTexture*> mTexMap;
 };
 
 

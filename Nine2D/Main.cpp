@@ -15,7 +15,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
-
+    srand(time(nullptr));
 
     g_Dx11.hInstance = hInstance;
 	g_Dx11.titleBarStats = true;
@@ -29,6 +29,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     DxWindow* gDx = new DxWindow;
 	Dx2DRenderer* gRender = new Dx2DRenderer;
     DemoGame* demo = new DemoGame;
+    demo->sample();
+    demo->sample();
     demo->sample();
 
     gDx->Run(demo,gRender);

@@ -134,11 +134,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="base\MathBase.h" />
+    <ClInclude Include="base\RefObject.h" />
+    <ClInclude Include="base\Vec2.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="DemoGame.h" />
     <ClInclude Include="Dx2DRenderer.h" />
     <ClInclude Include="DxShader.h" />
+    <ClInclude Include="DxTexture.h" />
     <ClInclude Include="DxWindow.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="IGame.h" />
@@ -157,9 +161,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="base\Vec2.cpp" />
     <ClCompile Include="DemoGame.cpp" />
     <ClCompile Include="Dx2DRenderer.cpp" />
     <ClCompile Include="DxShader.cpp" />
+    <ClCompile Include="DxTexture.cpp" />
     <ClCompile Include="DxWindow.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">

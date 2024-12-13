@@ -1,5 +1,5 @@
 #pragma once
-
+#include "base/Vec2.h"
 
 #ifndef SAFE_RELEASE
 #define SAFE_RELEASE(_ptr) { if(_ptr){_ptr->Release();} _ptr = nullptr; }

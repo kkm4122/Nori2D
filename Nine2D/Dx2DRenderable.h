@@ -1,16 +1,17 @@
 #pragma once
-
-class DxTexture;
+#include "DxTexture.h"
 
 struct Dx2DRenderable 
 {
 	float x,y;
+	float angle;
+	//XFloat2 position;
+
 	float w,h;
 	float ancherX, ancherY;
 	XFloat4 color;
 
-	DxTexture* tex = nullptr;
-	const WCHAR* texName = nullptr;
+	DxTexture tex;
 };
 
 
