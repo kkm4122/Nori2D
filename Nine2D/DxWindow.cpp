@@ -73,22 +73,19 @@ HRESULT DxWindow::InitWindow()
 						WS_OVERLAPPEDWINDOW,
 						centeredX,
 						centeredY,
-						clientRect.right - clientRect.left,	// Calculated width
-						clientRect.bottom - clientRect.top,	// Calculated height
+						clientRect.right - clientRect.left,
+						clientRect.bottom - clientRect.top,
 						0,			// No parent window
 						0,			// No menu
-						g_Dx11.hInstance,	// The app's handle
-						0);			// No other windows in our application
+						g_Dx11.hInstance,	
+						0);			
 
-	// Ensure the window was created properly
 	if (g_Dx11.hWnd == NULL)
 	{
 		DWORD error = GetLastError();
 		return HRESULT_FROM_WIN32(error);
 	}
 
-	// The window exists but is not visible yet
-	// We need to tell Windows to show it, and how to show it
 	ShowWindow(g_Dx11.hWnd, SW_SHOW);
 
 	return S_OK;
@@ -126,7 +123,7 @@ HRESULT DxWindow::InitDirectX()
 	// Result variable for below function calls
 	HRESULT hr = S_OK;
 
-	// 1. DirectX Device 持失
+	// 1. DirectX Device, SwapChain, Context 持失
 	hr = D3D11CreateDeviceAndSwapChain(
 				0,							// Video adapter (physical GPU) to use, or null for default
 				D3D_DRIVER_TYPE_HARDWARE,	// We want to use the hardware (GPU)
@@ -150,7 +147,7 @@ HRESULT DxWindow::InitDirectX()
 	g_Dx11.device->CreateRenderTargetView(backBufferTexture, 0, &g_Dx11.backBufferRTV);
 	backBufferTexture->Release();
 
-	// 3. Depth Buffer view 持失,
+	// 3. Depth Buffer 持失,
 	D3D11_TEXTURE2D_DESC depthStencilDesc = {};
 	depthStencilDesc.Width = g_Dx11.width;
 	depthStencilDesc.Height = g_Dx11.height;
@@ -225,6 +222,7 @@ HRESULT DxWindow::MessageLoop()
 
 			UpdateTitleBarStats();
 
+			/*
 			// Texture toggle
 			if (GetAsyncKeyState('O') & 0x8000)
 			{
@@ -238,7 +236,8 @@ HRESULT DxWindow::MessageLoop()
 			if (GetAsyncKeyState('M') & 0x8000)
 			{
 				//SystemsPlan::Plan->CreateModelGeometry(registry);
-			}			
+			}		
+			*/
 			if(mDrawObj) mDrawObj->Update();
 			
 			Draw();
@@ -380,7 +379,7 @@ void DxWindow::OnMouseWheel(float wheelDelta, int x, int y)
 
 void DxWindow::Draw()
 {
-	const float color[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	const float color[4] = { 0.4f, 0.4f, 0.4f, 0.0f };
 	int count = 0;
 
 	g_Dx11.context->ClearRenderTargetView(g_Dx11.backBufferRTV,

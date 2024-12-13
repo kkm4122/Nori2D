@@ -159,7 +159,7 @@
     <ClCompile Include="Dx2DRenderer.cpp" />
     <ClCompile Include="DxShader.cpp" />
     <ClCompile Include="DxWindow.cpp" />
-    <ClCompile Include="Nine0.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>

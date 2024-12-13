@@ -34,9 +34,9 @@ struct Dx11Vars
 	int half_width;
 	int half_height;
 
-	HINSTANCE	hInstance;		// The handle to the application
-	std::string titleBarText;	// Custom text in window's title bar
-	bool		titleBarStats;	// Show extra stats in title bar?
+	HINSTANCE	hInstance;	
+	std::string titleBarText;
+	bool		titleBarStats;
 	HWND hWnd;
 
 	//D3D_FEATURE_LEVEL		dxFeatureLevel;
@@ -65,6 +65,8 @@ struct CameraComponents
 	float yRotation;
 };
 
+extern Dx11Vars g_Dx11;
+extern TimeData g_Time;
 
 struct Vec2_t
 {
@@ -94,8 +96,7 @@ struct Comflab_t
 };
 
 
-extern Dx11Vars g_Dx11;
-extern TimeData g_Time;
+
 
 
 

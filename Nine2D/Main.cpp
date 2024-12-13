@@ -19,7 +19,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     g_Dx11.hInstance = hInstance;
 	g_Dx11.titleBarStats = true;
-	g_Dx11.titleBarText = "DirectX Window";
+	g_Dx11.titleBarText = "Nori2D Window";
     g_Dx11.dxFeatureLevel = D3D_FEATURE_LEVEL::D3D_FEATURE_LEVEL_11_1;
     g_Dx11.width = 1280;
     g_Dx11.height = 720;
@@ -27,14 +27,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     g_Dx11.half_height = 720 / 2;
 
     DxWindow* gDx = new DxWindow;
-	Dx2DRenderer* gRender = new Dx2DRenderer;
+	// Dx2DRenderer* gRender = new Dx2DRenderer;
 
-    DemoGame* demo = new DemoGame;
-    gDx->mDrawObj = demo;
+    // DemoGame* demo = new DemoGame;
+    // gDx->mDrawObj = demo;
     gDx->Run();
 
-    delete demo;
-    delete gRender;
+    // delete demo;
+    // delete gRender;
     delete gDx;
 
     return 0;

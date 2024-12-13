@@ -75,7 +75,7 @@
       <Filter>tk</Filter>
     </ClCompile>
     <ClCompile Include="DemoGame.cpp" />
-    <ClCompile Include="Nine0.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>WinMain</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
