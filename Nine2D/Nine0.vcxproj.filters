@@ -60,6 +60,7 @@
     <ClInclude Include="targetver.h">
       <Filter>WinMain</Filter>
     </ClInclude>
+    <ClInclude Include="Actor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DxWindow.cpp" />
@@ -81,6 +82,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>WinMain</Filter>
     </ClCompile>
+    <ClCompile Include="Actor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Nine0.rc">

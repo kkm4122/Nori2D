@@ -1,11 +1,10 @@
 #pragma once
 #include "IGame.h"
-#include "Dx2DRenderer.h"
+#include "Actor.h"
 
 class DemoGame : public IGame
 {
-	Dx2DRenderable mSample;
-	std::vector<Dx2DRenderable*>  mRenderableItemList;
+	std::vector<Actor*>  mActorList;
 	int count = 0;
 	IRenderer* mRD = nullptr;
 

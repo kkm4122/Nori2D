@@ -72,17 +72,19 @@ public:
 
 	Dx2DRenderer() { g=this; create(); }
 	~Dx2DRenderer();
+	DxTexture* GetTexture(const WCHAR* fileName);
 	void Draw(Dx2DRenderable* sprite) override;
 
 public:
 	VsShader*	mVS = nullptr;
 	PsShader*	mPS = nullptr;
 	Quad*		mQuad = nullptr;
-	DxTexture*	mTex = nullptr;
 	ConstantBuffer<CBChangesEveryFrame> mCB;
 
 	ID3D11SamplerState* mSamplerLinear = nullptr;
 	ID3D11BlendState*	mBlendState = nullptr;
+
+	std::map<std::wstring, DxTexture*> mTexMap;
 };
 
 

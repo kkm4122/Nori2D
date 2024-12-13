@@ -16,7 +16,6 @@ HRESULT Dx2DRenderer::create()
 	mVS = new VsShader(L"VS.cso");
 	mPS = new PsShader(L"PS.cso");
 	mQuad = new Quad;
-	mTex = new DxTexture(L"Carrot.png");
 
 	if (!mQuad->mVertexLayout) 
 		mQuad->createInputLayout(mVS->mBlob);
@@ -24,6 +23,11 @@ HRESULT Dx2DRenderer::create()
 	hr = mCB.Create();
 	hr = createSampler();
 	hr = createBS();
+
+	CBChangesEveryFrame cb;
+	cb.vMeshColor = {0.5f, 0.5f, 0.5f, 1.f};
+	mCB.SetData(cb);
+
 
 	return hr;
 }
@@ -70,14 +74,38 @@ HRESULT Dx2DRenderer::createSampler()
 
 Dx2DRenderer::~Dx2DRenderer()
 {
+	for (auto tex : mTexMap) {
+		delete tex.second;
+	}
+
 	SAFE_DELETE(mVS);
 	SAFE_DELETE(mPS);
 	SAFE_DELETE(mQuad);
-	SAFE_DELETE(mTex);
 }
+
+
+DxTexture* Dx2DRenderer::GetTexture(const WCHAR* fileName)
+{
+	std::map<std::wstring, DxTexture*>::iterator it
+		= mTexMap.find(fileName);
+	if (it != mTexMap.end())
+	{
+		return it->second;
+	}
+	else 
+	{
+		DxTexture* tex = new DxTexture(fileName);
+		mTexMap[fileName] = tex;
+		return tex;
+	}
+
+}
+
 
 void Dx2DRenderer::Draw(Dx2DRenderable* sp)
 {
+	if(!sp->tex) sp->tex = GetTexture(sp->texName);
+
 	mQuad->Draw(sp);
 
 	CBChangesEveryFrame cb;

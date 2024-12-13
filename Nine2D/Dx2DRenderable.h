@@ -9,7 +9,8 @@ struct Dx2DRenderable
 	float ancherX, ancherY;
 	XFloat4 color;
 
-	DxTexture* tex;
+	DxTexture* tex = nullptr;
+	const WCHAR* texName = nullptr;
 };
 
 

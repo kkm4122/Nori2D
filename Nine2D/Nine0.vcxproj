@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Actor.h" />
     <ClInclude Include="Components.h" />
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="DemoGame.h" />
@@ -155,6 +156,7 @@
     <ClInclude Include="tk\WICTextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="DemoGame.cpp" />
     <ClCompile Include="Dx2DRenderer.cpp" />
     <ClCompile Include="DxShader.cpp" />

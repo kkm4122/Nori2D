@@ -13,6 +13,8 @@ public:
 
 	HRESULT Create()
 	{
+		HRESULT hr;
+
 		D3D11_BUFFER_DESC bd = {};
 		bd.Usage = D3D11_USAGE_DYNAMIC;
 		bd.ByteWidth = sizeof(T);
@@ -21,7 +23,8 @@ public:
 
 		// D3D11_SUBRESOURCE_DATA initData = {};
 		// initData.pSysMem = nullptr;
-		return g_Dx11.device->CreateBuffer(&bd, nullptr, &mConstantBuffer);
+		hr = g_Dx11.device->CreateBuffer(&bd, nullptr, &mConstantBuffer);
+		return hr;
 	}
 
 	void SetData(T const& value) noexcept
