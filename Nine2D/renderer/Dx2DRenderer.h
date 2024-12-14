@@ -41,17 +41,17 @@ public:
 	void Update(Dx2DRenderable* rd);
 	void Draw(Dx2DRenderable* sp);
 
-	int mVertexCount = 0;
+	int mVertexCount = 4;
 	ID3D11Buffer *mVertexBuffer = nullptr;  
-	ID3D11InputLayout*  mVertexLayout = nullptr;
+	static ID3D11InputLayout*  mVertexLayout;
 
 };
-
 
 
 class Dx2DRenderer : public IRenderer
 {
 	HRESULT create();
+	HRESULT creaVB();
 
 	HRESULT createBS();
 	HRESULT createSampler();
@@ -62,6 +62,7 @@ public:
 	~Dx2DRenderer();
 	void Draw(Dx2DRenderable* sprite) override;
 	void Draw2(Dx2DRenderable2* sprite) override;
+	void Draw11(Dx2DRenderable2* sprite, VERTEX* vt, int vertexCount) override;
 
 public:
 	VsShader*	mVS = nullptr;
@@ -71,7 +72,10 @@ public:
 
 	ID3D11SamplerState* mSamplerLinear = nullptr;
 	ID3D11BlendState*	mBlendState = nullptr;
+	ID3D11InputLayout*  mVertexLayout = nullptr;
 
+	int mVertexCount = 0;
+	ID3D11Buffer*		mVertexBuffer = nullptr;  
 };
 
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "DxTexture.h"
+class VERTEX;
 
 struct Dx2DRenderable 
 {
@@ -24,6 +25,7 @@ struct Dx2DRenderable2
 
 	const WCHAR* texName = nullptr;
 	ID3D11ShaderResourceView* tex = nullptr;
+	ID3D11Buffer *vb = nullptr;
 };
 
 
@@ -32,5 +34,6 @@ class IRenderer
 public:
 	virtual void Draw(Dx2DRenderable* sprite) = 0;
 	virtual void Draw2(Dx2DRenderable2* sprite) = 0;
+	virtual void Draw11(Dx2DRenderable2* sprite, VERTEX* vt, int vertexCount) {};
 };
 

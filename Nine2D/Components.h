@@ -91,6 +91,7 @@ struct Img_t
 
 	const WCHAR* texName; 
     void* tex;
+	void* vb;
 } ;
 
 
@@ -115,24 +116,4 @@ void Render_system_all(float dt);
 void create_entity1();
 void create_entity2();
 
-ecs_ret_t Movement_System(ecs_t* ecs,
-                          ecs_id_t* entities,
-                          int entity_count,
-                          ecs_dt_t dt,
-                          void* udata);
-ecs_ret_t Comflab_System(ecs_t* ecs,
-                        ecs_id_t* entities,
-                        int entity_count,
-                        ecs_dt_t dt,
-                        void* udata);
-ecs_ret_t Bounds_System(ecs_t* ecs,
-                        ecs_id_t* entities,
-                        int entity_count,
-                        ecs_dt_t dt,
-                        void* udata);
 
-ecs_ret_t Printf_System(ecs_t* ecs,
-                          ecs_id_t* entities,
-                          int entity_count,
-                          ecs_dt_t dt,
-                          void* udata);
