@@ -76,4 +76,21 @@ void DxTextureMgr::DestroyAll()
 	}
 }
 
+ID3D11ShaderResourceView* DxTextureMgr::Find(const WCHAR* name)
+{
+	std::map<std::wstring, ID3D11ShaderResourceView*>::iterator it
+		= mTexMap.find(name);
+	if (it != mTexMap.end())
+	{
+		return it->second;
+	}
+	else 
+	{
+		ID3D11ShaderResourceView* rv =nullptr;
+		HRESULT hr = CreateWICTextureFromFile(g_Dx11.device,name,nullptr,&rv);
+		mTexMap[name] = rv;
+		return rv;
+	}
+}
+
 

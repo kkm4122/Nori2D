@@ -1,5 +1,5 @@
 #pragma once
-#include "renderer\Dx2DRenderable.h"
+#include "Dx2DRenderable.h"
 #include "IGame.h"
 
 class Actor 

@@ -134,21 +134,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="Actor1.h" />
     <ClInclude Include="base\MathBase.h" />
     <ClInclude Include="base\RefObject.h" />
     <ClInclude Include="base\Vec2.h" />
     <ClInclude Include="Components.h" />
-    <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="DemoGame.h" />
-    <ClInclude Include="Dx2DRenderer.h" />
-    <ClInclude Include="DxShader.h" />
-    <ClInclude Include="DxTexture.h" />
-    <ClInclude Include="DxWindow.h" />
+    <ClInclude Include="DemoGame1.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="IGame.h" />
     <ClInclude Include="Nine0.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Dx2DRenderable.h" />
+    <ClInclude Include="renderer\ConstantBuffer.h" />
+    <ClInclude Include="renderer\Dx2DRenderable.h" />
+    <ClInclude Include="renderer\Dx2DRenderer.h" />
+    <ClInclude Include="renderer\DxShader.h" />
+    <ClInclude Include="renderer\DxTexture.h" />
+    <ClInclude Include="renderer\DxWindow.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="tk\DDS.h" />
@@ -156,24 +158,25 @@
     <ClInclude Include="tk\DirectXHelpers.h" />
     <ClInclude Include="tk\LoaderHelpers.h" />
     <ClInclude Include="tk\PlatformHelpers.h" />
-    <ClInclude Include="tk\SimpleMath.h" />
     <ClInclude Include="tk\WICTextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Actor1.cpp" />
     <ClCompile Include="base\Vec2.cpp" />
+    <ClCompile Include="ECSystem.cpp" />
     <ClCompile Include="DemoGame.cpp" />
-    <ClCompile Include="Dx2DRenderer.cpp" />
-    <ClCompile Include="DxShader.cpp" />
-    <ClCompile Include="DxTexture.cpp" />
-    <ClCompile Include="DxWindow.cpp" />
+    <ClCompile Include="DemoGame1.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="renderer\Dx2DRenderer.cpp" />
+    <ClCompile Include="renderer\DxShader.cpp" />
+    <ClCompile Include="renderer\DxTexture.cpp" />
+    <ClCompile Include="renderer\DxWindow.cpp" />
     <ClCompile Include="tk\DDSTextureLoader.cpp" />
-    <ClCompile Include="tk\SimpleMath.cpp" />
     <ClCompile Include="tk\WICTextureLoader.cpp" />
   </ItemGroup>
   <ItemGroup>

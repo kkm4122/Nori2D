@@ -1,17 +1,16 @@
 #pragma once
 #include "IGame.h"
-#include "Actor.h"
+#include "Actor1.h"
 
-class DemoGame : public IGame
+class DemoGame1 : public IGame
 {
-	std::vector<Actor*>  mActorList;
+	std::vector<Actor1*>  mActorList;
 	int count = 0;
 	IRenderer* mRD = nullptr;
 
 public:
-	DemoGame();
-	~DemoGame();
-	void sample1();
+	DemoGame1();
+	~DemoGame1();
 	void sample();
 
 	void Update(float delta) override;

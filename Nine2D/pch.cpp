@@ -3,4 +3,4 @@
 #include "pch.h"
 
 // When you are using pre-compiled headers, this source file is necessary for compilation to succeed.
-ecs_t* ecs_ = NULL;
+// ecs_t* ecs_ = NULL;

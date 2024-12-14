@@ -45,7 +45,7 @@ public:
 	bool New(DxTexture& tex);
 	bool Delete(DxTexture* tex);
 	void DestroyAll();
-
+	ID3D11ShaderResourceView* Find(const WCHAR* name);
 
 	std::map<std::wstring, ID3D11ShaderResourceView*> mTexMap;
 

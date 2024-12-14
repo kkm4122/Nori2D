@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "DemoGame.h"
-#include "Dx2DRenderer.h"
+#include "renderer\Dx2DRenderer.h"
 #include "Actor.h"
 
 MoveAction mv;
@@ -32,12 +32,18 @@ void DemoGame::Update(float delta)
 
 }
 
-
 void DemoGame::sample()
 {
+	for(int i=0; i<1000; ++i) {
+		sample1();
+	}
+}
+
+void DemoGame::sample1()
+{
 	Actor* aa = new Actor;
-	aa->mRd.x = g_Dx11.half_width;
-	aa->mRd.y = g_Dx11.half_height;
+	aa->mRd.position.x = g_Dx11.half_width;
+	aa->mRd.position.y = g_Dx11.half_height;
 	aa->mRd.w = 100;
 	aa->mRd.h = 100;
 	aa->mRd.ancherX = 0.5f;

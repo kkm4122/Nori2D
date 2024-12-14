@@ -20,6 +20,9 @@
     <Filter Include="base">
       <UniqueIdentifier>{81d9d94e-2be9-4c30-8549-d0e1d4b836de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{498b5da0-a993-4ba2-9989-7fb139bb831b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components.h" />
@@ -36,9 +39,6 @@
       <Filter>tk</Filter>
     </ClInclude>
     <ClInclude Include="tk\PlatformHelpers.h">
-      <Filter>tk</Filter>
-    </ClInclude>
-    <ClInclude Include="tk\SimpleMath.h">
       <Filter>tk</Filter>
     </ClInclude>
     <ClInclude Include="tk\WICTextureLoader.h">
@@ -64,21 +64,6 @@
     <ClInclude Include="IGame.h">
       <Filter>DX</Filter>
     </ClInclude>
-    <ClInclude Include="DxWindow.h">
-      <Filter>DX</Filter>
-    </ClInclude>
-    <ClInclude Include="DxShader.h">
-      <Filter>DX</Filter>
-    </ClInclude>
-    <ClInclude Include="Dx2DRenderer.h">
-      <Filter>DX</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstantBuffer.h">
-      <Filter>DX</Filter>
-    </ClInclude>
-    <ClInclude Include="Dx2DRenderable.h">
-      <Filter>DX</Filter>
-    </ClInclude>
     <ClInclude Include="base\RefObject.h">
       <Filter>base</Filter>
     </ClInclude>
@@ -88,15 +73,29 @@
     <ClInclude Include="base\Vec2.h">
       <Filter>base</Filter>
     </ClInclude>
-    <ClInclude Include="DxTexture.h">
-      <Filter>DX</Filter>
+    <ClInclude Include="Actor1.h" />
+    <ClInclude Include="DemoGame1.h" />
+    <ClInclude Include="renderer\ConstantBuffer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Dx2DRenderable.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\Dx2DRenderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\DxShader.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\DxTexture.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="renderer\DxWindow.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tk\DDSTextureLoader.cpp">
-      <Filter>tk</Filter>
-    </ClCompile>
-    <ClCompile Include="tk\SimpleMath.cpp">
       <Filter>tk</Filter>
     </ClCompile>
     <ClCompile Include="tk\WICTextureLoader.cpp">
@@ -110,20 +109,23 @@
       <Filter>WinMain</Filter>
     </ClCompile>
     <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="DxWindow.cpp">
-      <Filter>DX</Filter>
-    </ClCompile>
-    <ClCompile Include="DxShader.cpp">
-      <Filter>DX</Filter>
-    </ClCompile>
-    <ClCompile Include="Dx2DRenderer.cpp">
-      <Filter>DX</Filter>
-    </ClCompile>
     <ClCompile Include="base\Vec2.cpp">
       <Filter>base</Filter>
     </ClCompile>
-    <ClCompile Include="DxTexture.cpp">
-      <Filter>DX</Filter>
+    <ClCompile Include="Actor1.cpp" />
+    <ClCompile Include="DemoGame1.cpp" />
+    <ClCompile Include="ECSystem.cpp" />
+    <ClCompile Include="renderer\Dx2DRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\DxShader.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\DxTexture.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\DxWindow.cpp">
+      <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

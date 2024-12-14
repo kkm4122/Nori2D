@@ -109,6 +109,31 @@ void Dx2DRenderer::Draw(Dx2DRenderable* sp)
 
 
 
+void Dx2DRenderer::Draw2(Dx2DRenderable2* sp)
+{
+	if(sp->tex == nullptr) {
+		sp->tex = DxTextureMgr::get()->Find(sp->texName);
+	}
+
+	mQuad->Draw((Dx2DRenderable*)sp);
+
+	CBChangesEveryFrame cb;
+	cb.vMeshColor = sp->color;
+	mCB.SetData(cb);
+
+	mVS->Draw();
+	mPS->Draw();
+
+	g_Dx11.context->PSSetConstantBuffers(0, 1, &mCB.mConstantBuffer);
+	g_Dx11.context->PSSetSamplers(0, 1, &mSamplerLinear);
+	g_Dx11.context->PSSetShaderResources(0, 1, &sp->tex);
+
+	g_Dx11.context->OMSetBlendState(mBlendState, 0, 0xFFFFFFFF);
+	g_Dx11.context->Draw(mQuad->mVertexCount, 0);
+}
+
+
+
 HRESULT Quad::create()
 {
 	HRESULT hr;
@@ -158,8 +183,8 @@ void Quad::Update(Dx2DRenderable* rd)
 {
 	float ax = (rd->w * rd->ancherX);
 	float ay = (rd->h * rd->ancherY);
-	float lx = rd->x - ax;
-	float ty = rd->y + ay;
+	float lx = rd->position.x - ax;
+	float ty = rd->position.y + ay;
 	float rx = lx + rd->w;
 	float by = ty - rd->h;
 

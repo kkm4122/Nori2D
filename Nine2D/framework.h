@@ -1,5 +1,4 @@
 #pragma once
-
 #include "pico\pico_ecs.h"
 #include <Windows.h>
 #include <d3d11.h>
@@ -14,6 +13,7 @@
 #include <sstream>
 #include <fstream>
 
+#include "base\Vec2.h"
 #include "Components.h"
 
 
@@ -25,7 +25,8 @@
 typedef DirectX::XMFLOAT2 XFloat2;
 typedef DirectX::XMFLOAT3 XFloat3;
 typedef DirectX::XMFLOAT4 XFloat4; 
+typedef nr::Vec2 Vec2; 
 
-extern ecs_t* ecs_;
+
 
 

@@ -3,9 +3,11 @@
 #include "pch.h"
 #include "framework.h"
 #include "Nine0.h"
-#include "DxWindow.h"
-#include "Dx2DRenderer.h"
+#include "renderer\DxWindow.h"
+#include "renderer\Dx2DRenderer.h"
 #include "DemoGame.h"
+#include "DemoGame1.h"
+
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -16,6 +18,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
     srand(time(nullptr));
+
+    ecs1 = ecs_new(1024, NULL);
 
     g_Dx11.hInstance = hInstance;
 	g_Dx11.titleBarStats = true;
@@ -28,9 +32,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     DxWindow* gDx = new DxWindow;
 	Dx2DRenderer* gRender = new Dx2DRenderer;
-    DemoGame* demo = new DemoGame;
-    demo->sample();
-    demo->sample();
+    DemoGame1* demo = new DemoGame1;
     demo->sample();
 
     gDx->Run(demo,gRender);
@@ -38,6 +40,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     delete demo;
     delete gRender;
     delete gDx;
+
+    ecs_free(ecs1);
 
     return 0;
 }

@@ -76,12 +76,23 @@ struct Vec2_t
 struct Pos_t
 {
     float x, y;
+	float angle;
 };
 
 struct Velocity_t
 {
     float vx, vy;
 };
+
+struct Img_t
+{
+	float w,h;
+	float ancherX, ancherY;
+
+	const WCHAR* texName; 
+    void* tex;
+} ;
+
 
 struct Rect_t
 {
@@ -95,10 +106,14 @@ struct Comflab_t
     int dingy;
 };
 
+extern ecs_t* ecs1;
 
-
-
-
+void register_components();
+void register_systems();
+void Update_system_all(float dt);
+void Render_system_all(float dt);
+void create_entity1();
+void create_entity2();
 
 ecs_ret_t Movement_System(ecs_t* ecs,
                           ecs_id_t* entities,

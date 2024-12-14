@@ -61,6 +61,7 @@ public:
 	Dx2DRenderer() { g=this; create(); }
 	~Dx2DRenderer();
 	void Draw(Dx2DRenderable* sprite) override;
+	void Draw2(Dx2DRenderable2* sprite) override;
 
 public:
 	VsShader*	mVS = nullptr;
