@@ -15,8 +15,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
-    UNREFERENCED_PARAMETER(hPrevInstance);
-    UNREFERENCED_PARAMETER(lpCmdLine);
+    // UNREFERENCED_PARAMETER(hPrevInstance);
+    // UNREFERENCED_PARAMETER(lpCmdLine);
+
     srand(time(nullptr));
 
     ecs1 = ecs_new(1024, NULL);

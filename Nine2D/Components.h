@@ -68,6 +68,7 @@ struct CameraComponents
 extern Dx11Vars g_Dx11;
 extern TimeData g_Time;
 
+
 struct Vec2_t
 {
     float x, y;
@@ -91,7 +92,6 @@ struct Img_t
 
 	const WCHAR* texName; 
     void* tex;
-	void* vb;
 } ;
 
 

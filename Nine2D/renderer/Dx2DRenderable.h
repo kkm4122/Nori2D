@@ -1,6 +1,7 @@
 #pragma once
 #include "DxTexture.h"
-class VERTEX;
+
+struct VERTEX;
 
 struct Dx2DRenderable 
 {
@@ -34,6 +35,5 @@ class IRenderer
 public:
 	virtual void Draw(Dx2DRenderable* sprite) = 0;
 	virtual void Draw2(Dx2DRenderable2* sprite) = 0;
-	virtual void Draw11(Dx2DRenderable2* sprite, VERTEX* vt, int vertexCount) {};
 };
 

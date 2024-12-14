@@ -117,7 +117,6 @@ ecs_ret_t Render_System(ecs_t* ecs,
         rd.ancherY = img->ancherY; 
         rd.texName = img->texName;
         rd.tex = (ID3D11ShaderResourceView*)img->tex;
-        rd.vb = (ID3D11Buffer *)img->vb;
         
         g_ECS_Renderer->Draw2(&rd);
 
@@ -192,7 +191,6 @@ void create_entity1()
     img->h = 100;
     img->texName = g_Tex_Name[0];
     img->tex = nullptr;
-    img->vb = nullptr;
 
 }
 
@@ -218,7 +216,6 @@ void create_entity2()
     img->h = 100;
     img->texName = g_Tex_Name[1];
     img->tex = nullptr;
-    img->vb = nullptr;
 
 }
 

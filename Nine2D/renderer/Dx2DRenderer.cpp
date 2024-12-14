@@ -46,13 +46,13 @@ HRESULT Dx2DRenderer::create()
 
 	if (!mQuad->mVertexLayout) { 
 		mQuad->createInputLayout(mVS->mBlob);
-		mVertexLayout = mQuad->mVertexLayout;
 	}
 
 	hr = mCB.Create();
 	hr = createSampler();
 	hr = createBS();
-	hr = creaVB();
+	
+	//creaVB();
 
 	CBChangesEveryFrame cb;
 	cb.vMeshColor = {0.5f, 0.5f, 0.5f, 1.f};
@@ -62,9 +62,10 @@ HRESULT Dx2DRenderer::create()
 	return hr;
 }
 
-HRESULT Dx2DRenderer::creaVB()
+ID3D11Buffer* Dx2DRenderer::creaVB()
 {
 	HRESULT hr;
+	ID3D11Buffer* vb;
 
     D3D11_BUFFER_DESC bd;
     ZeroMemory(&bd, sizeof(bd));
@@ -74,8 +75,11 @@ HRESULT Dx2DRenderer::creaVB()
     bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;       // use as a vertex buffer
     bd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;    // allow CPU to write in buffer
 
-    hr = g_Dx11.device->CreateBuffer(&bd, NULL, &mVertexBuffer);       // create the buffer
-	return hr;
+    hr = g_Dx11.device->CreateBuffer(&bd, NULL, &vb);       // create the buffer
+	if (FAILED(hr))
+		return nullptr;
+
+	return vb;
 }
 
 HRESULT Dx2DRenderer::createBS()
@@ -120,8 +124,7 @@ HRESULT Dx2DRenderer::createSampler()
 
 Dx2DRenderer::~Dx2DRenderer()
 {
-
-	SAFE_RELEASE(mVertexBuffer);
+	//SAFE_RELEASE(mVertexBuffer);
 	SAFE_DELETE(mVS);
 	SAFE_DELETE(mPS);
 	SAFE_DELETE(mQuad);
@@ -137,8 +140,6 @@ void Dx2DRenderer::Draw(Dx2DRenderable* sp)
 	}
 
 	mQuad->Draw(sp);
-	g_Dx11.context->IASetInputLayout(mVertexLayout);
-
 
 	CBChangesEveryFrame cb;
 	cb.vMeshColor = sp->color;
@@ -226,8 +227,6 @@ void Dx2DRenderer::Draw2(Dx2DRenderable2* sp)
 		mQuad->Draw( (Dx2DRenderable*)sp);
 		// vb = mQuad->mVertexBuffer;
 	}
-	
-	g_Dx11.context->IASetInputLayout(mVertexLayout);
 
 	UINT stride = sizeof(VERTEX);
 	UINT offset = 0;
@@ -250,35 +249,6 @@ void Dx2DRenderer::Draw2(Dx2DRenderable2* sp)
 	g_Dx11.context->Draw(mQuad->mVertexCount, 0);
 }
 
-void Dx2DRenderer::Draw11(Dx2DRenderable2* sp, VERTEX* vt, int vertexCount)
-{
-	if(sp->tex == nullptr) {
-		sp->tex = DxTextureMgr::get()->Find(sp->texName);
-	}
-
-    D3D11_MAPPED_SUBRESOURCE ms;
-    g_Dx11.context->Map(mVertexBuffer, NULL, D3D11_MAP_WRITE_DISCARD, NULL, &ms);
-    memcpy(ms.pData, vt, sizeof(VERTEX)*vertexCount );
-    g_Dx11.context->Unmap(mVertexBuffer, NULL);
-
-	
-	g_Dx11.context->IASetInputLayout(mVertexLayout);
-
-	UINT stride = sizeof(VERTEX);
-	UINT offset = 0;
-	g_Dx11.context->IASetVertexBuffers(0, 1, &mVertexBuffer, &stride, &offset);
-	g_Dx11.context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-
-	mVS->Draw();
-	mPS->Draw();
-
-	g_Dx11.context->PSSetConstantBuffers(0, 1, &mCB.mConstantBuffer);
-	g_Dx11.context->PSSetSamplers(0, 1, &mSamplerLinear);
-	g_Dx11.context->PSSetShaderResources(0, 1, &sp->tex);
-
-	g_Dx11.context->OMSetBlendState(mBlendState, 0, 0xFFFFFFFF);
-	g_Dx11.context->Draw(mVertexCount, 0);
-}
 
 
 
@@ -366,7 +336,7 @@ void Quad::Draw(Dx2DRenderable* sp)
 {
 	Update(sp);
 
-	// g_Dx11.context->IASetInputLayout(mVertexLayout);
+	g_Dx11.context->IASetInputLayout(mVertexLayout);
 
 	UINT stride = sizeof(VERTEX);
 	UINT offset = 0;
