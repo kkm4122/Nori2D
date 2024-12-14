@@ -151,6 +151,7 @@
     <ClInclude Include="renderer\DxShader.h" />
     <ClInclude Include="renderer\DxTexture.h" />
     <ClInclude Include="renderer\DxWindow.h" />
+    <ClInclude Include="renderer\Quad.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="tk\DDS.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="renderer\DxShader.cpp" />
     <ClCompile Include="renderer\DxTexture.cpp" />
     <ClCompile Include="renderer\DxWindow.cpp" />
+    <ClCompile Include="renderer\Quad.cpp" />
     <ClCompile Include="tk\DDSTextureLoader.cpp" />
     <ClCompile Include="tk\WICTextureLoader.cpp" />
   </ItemGroup>

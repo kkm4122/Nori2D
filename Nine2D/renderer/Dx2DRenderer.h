@@ -4,6 +4,7 @@
 #include "ConstantBuffer.h"
 #include "Dx2DRenderable.h"
 #include "DxTexture.h"
+#include "Quad.h"
 
 struct VS_CONSTANT_BUFFER
 {
@@ -29,23 +30,6 @@ struct CBChangesEveryFrame
 };
 
 
-
-class Quad
-{
-	HRESULT create();
-public:
-	Quad() { create(); }
-	~Quad();
-	HRESULT createInputLayout(ID3DBlob* mBlob);
-
-	void Update(Dx2DRenderable* rd);
-	void Draw(Dx2DRenderable* sp);
-
-	int mVertexCount = 4;
-	ID3D11Buffer *mVertexBuffer = nullptr;  
-	static ID3D11InputLayout*  mVertexLayout;
-
-};
 
 
 class Dx2DRenderer : public IRenderer

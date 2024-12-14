@@ -93,6 +93,9 @@
     <ClInclude Include="renderer\DxWindow.h">
       <Filter>Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="renderer\Quad.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tk\DDSTextureLoader.cpp">
@@ -125,6 +128,9 @@
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="renderer\DxWindow.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="renderer\Quad.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
