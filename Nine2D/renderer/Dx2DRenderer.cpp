@@ -151,10 +151,6 @@ void Dx2DRenderer::Draw2(Dx2DRenderable2* sp)
 	g_Dx11.context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
 
-	// CBChangesEveryFrame cb;
-	// cb.vMeshColor = sp->color;
-	// mCB.SetData(cb);
-
 	mVS->Draw();
 	mPS->Draw();
 
