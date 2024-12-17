@@ -22,7 +22,6 @@
 					UFR_(x,13),		\
 					UFR_(x,14)		}
 
-
 struct UltraRect
 {
 	float U1, V1;
@@ -70,7 +69,7 @@ struct AnimRectTime
 	float totalFrame;
 };
 
-AnimRectTime Ultra_Time = { 2.f, ARRAYSIZE(Ultra_0) };
+AnimRectTime Ultra_Time = { 1.5f, ARRAYSIZE(Ultra_0) };
 
 UltraRect& GetActorUV(Dx2DRenderable* rd)
 {
@@ -105,4 +104,28 @@ AnimRectTime& GetActorTime(Dx2DRenderable* rd)
 	{
 		return Ultra_Time;
 	}
+}
+
+int GetRadianToAnimIndex(float rad) 
+{
+	float angle;
+	angle = MATH_RAD_TO_DEG(rad);
+	
+	int dir;
+	
+	if (angle > 0)
+	{
+		angle += 11.25f;
+		dir = angle / 22.5;
+	}
+	else
+	{
+		angle -= 11.25f;
+		dir = angle / 22.5;
+		dir = dir + 16;
+		if (dir == 16)
+			dir = 0;
+	}
+
+	return dir;
 }
