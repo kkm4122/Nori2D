@@ -33,7 +33,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     DxWindow* gDx = new DxWindow;
 	Dx2DRenderer* gRender = new Dx2DRenderer;
-    DemoGame* demo = new DemoGame;
+    DemoGame1* demo = new DemoGame1;
     demo->sample();
 
     gDx->Run(demo,gRender);
