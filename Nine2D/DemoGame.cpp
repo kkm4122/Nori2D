@@ -5,6 +5,9 @@
 
 MoveAction mv;
 
+bool compare(Actor* a, Actor* b) { return a->mRd.position.y < b->mRd.position.y; }
+
+
 DemoGame::DemoGame() 
 {
 }
@@ -18,6 +21,9 @@ DemoGame::~DemoGame()
 
 void DemoGame::Draw(IRenderer* rd)
 {
+
+	std::sort(mActorList.begin(), mActorList.end(), compare);
+
 	for(int i=0; i<mActorList.size(); ++i)
 	{
 		rd->Draw(&mActorList[i]->mRd);
@@ -34,7 +40,7 @@ void DemoGame::Update(float delta)
 
 void DemoGame::sample()
 {
-	for(int i=0; i<1; ++i) {
+	for(int i=0; i<1000; ++i) {
 		sample1();
 	}
 }
