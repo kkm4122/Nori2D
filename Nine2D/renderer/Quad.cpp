@@ -149,6 +149,7 @@ void Quad::Update(Dx2DRenderable* rd)
 	float fty = (ty - g_Dx11.half_height) / g_Dx11.half_height;
 	float fby = (by - g_Dx11.half_height) / g_Dx11.half_height;
 
+	
 
     VERTEX OurVertices[4] =
     {
@@ -158,6 +159,7 @@ void Quad::Update(Dx2DRenderable* rd)
         {frx, fty, 0.0f, 1.f, 0.f}
     };
 
+	DxTextureMgr::get()->GetUV(rd, OurVertices);
 	// g_Dx11.context->UpdateSubresource( mVertexBuffer, 0, nullptr, OurVertices, 0, 0 );
 
 	

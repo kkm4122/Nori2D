@@ -2,10 +2,9 @@
 #include "DxShader.h"
 #include "IGame.h"
 #include "ConstantBuffer.h"
-#include "Dx2DRenderable.h"
 
-
-
+struct Dx2DRenderable;
+struct VERTEX;
 
 class DxTexture
 {
@@ -45,6 +44,7 @@ public:
 	bool New(DxTexture& tex);
 	bool Delete(DxTexture* tex);
 	void DestroyAll();
+	void GetUV(Dx2DRenderable* rd, VERTEX* Vt);
 	ID3D11ShaderResourceView* Find(const WCHAR* name);
 
 	std::map<std::wstring, ID3D11ShaderResourceView*> mTexMap;

@@ -13,6 +13,10 @@ struct Dx2DRenderable
 	XFloat4 color;
 
 	DxTexture tex;
+	int dir;
+	int frameNo;
+	
+	float AnimTime;
 };
 
 struct Dx2DRenderable2

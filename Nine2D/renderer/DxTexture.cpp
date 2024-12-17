@@ -3,6 +3,8 @@
 #include "Dx2DRenderer.h"
 #include "tk/DDSTextureLoader.h"
 #include "tk/WICTextureLoader.h"
+#include "AnimationData.h"
+#include "Dx2DRenderable.h"
 
 using namespace DirectX;
 
@@ -74,6 +76,34 @@ void DxTextureMgr::DestroyAll()
 	for (auto tex : mTexMap) {
 		tex.second->Release();
 	}
+}
+
+void DxTextureMgr::GetUV(Dx2DRenderable* rd, VERTEX* Vt)
+{
+	AnimRectTime animTime = GetActorTime(rd);
+
+	float FrameTime = animTime.totalTime / animTime.totalFrame;
+
+	rd->AnimTime += g_Time.deltaTime;
+
+	if (rd->AnimTime >= FrameTime)
+	{
+		rd->frameNo++;
+		rd->AnimTime -= FrameTime;
+		if (rd->frameNo >= animTime.totalFrame)
+			rd->frameNo = 0;
+	}
+
+	UltraRect uv = GetActorUV(rd);
+
+	Vt[0].U = uv.U1;
+	Vt[0].V = uv.V2;
+	Vt[1].U = uv.U1;
+	Vt[1].V = uv.V1;
+	Vt[2].U = uv.U2;
+	Vt[2].V = uv.V2;
+	Vt[3].U = uv.U2;
+	Vt[3].V = uv.V1;
 }
 
 ID3D11ShaderResourceView* DxTextureMgr::Find(const WCHAR* name)
