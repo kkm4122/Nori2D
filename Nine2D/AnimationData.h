@@ -104,6 +104,8 @@ AnimRectTime& GetActorTime(Dx2DRenderable* rd)
 	{
 		return Ultra_Time;
 	}
+
+	return Ultra_Time;
 }
 
 int GetRadianToAnimIndex(float rad) 

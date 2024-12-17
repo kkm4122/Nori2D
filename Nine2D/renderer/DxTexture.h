@@ -6,13 +6,20 @@
 struct Dx2DRenderable;
 struct VERTEX;
 
-class DxTexture
+struct STexture
 {
-public:
-	DxTexture() : mTextureRV(nullptr), mName(nullptr) {}
-	~DxTexture();
+	const WCHAR* mName = nullptr;
+	ID3D11ShaderResourceView* mTextureRV = nullptr;
+
     bool isNull() const { return mTextureRV == nullptr; }
     bool isNotNull() const { return mTextureRV != nullptr; }	
+	void Draw();
+};
+
+class DxTexture : public STexture
+{
+public:
+	~DxTexture();
 	void setNull() { if(mTextureRV) mTextureRV->Release(); mTextureRV=nullptr; }
 
     DxTexture& operator=(const DxTexture& lp)
@@ -24,11 +31,6 @@ public:
 
 		return *this; 
 	}
-
-	void Draw();
-
-	const WCHAR* mName = nullptr;
-	ID3D11ShaderResourceView* mTextureRV;
 };
 
 

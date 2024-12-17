@@ -31,7 +31,7 @@ HRESULT Dx2DRenderer::create()
 	//creaVB();
 
 	CBChangesEveryFrame cb;
-	cb.vMeshColor = {0.5f, 0.5f, 0.5f, 1.f};
+	cb.vMeshColor = {1.0f, 1.0f, 1.0f, 1.f};
 	mCB.SetData(cb);
 
 
@@ -138,13 +138,13 @@ void Dx2DRenderer::Draw(Dx2DRenderable* sp)
 
 void Dx2DRenderer::Draw2(Dx2DRenderable2* sp)
 {
-	if(sp->tex == nullptr) {
-		sp->tex = DxTextureMgr::get()->Find(sp->texName);
+	if(sp->tex.isNull()) {
+		sp->tex.mTextureRV = DxTextureMgr::get()->Find(sp->tex.mName);
 	}
 
 	ID3D11Buffer* vb = mQuad->mVertexBuffer;
 
-	mQuad->Draw( (Dx2DRenderable*)sp);
+	mQuad->Draw((Dx2DRenderable*)sp);
 
 	UINT stride = sizeof(VERTEX);
 	UINT offset = 0;
@@ -157,7 +157,7 @@ void Dx2DRenderer::Draw2(Dx2DRenderable2* sp)
 
 	g_Dx11.context->PSSetConstantBuffers(0, 1, &mCB.mConstantBuffer);
 	g_Dx11.context->PSSetSamplers(0, 1, &mSamplerLinear);
-	g_Dx11.context->PSSetShaderResources(0, 1, &sp->tex);
+	g_Dx11.context->PSSetShaderResources(0, 1, &sp->tex.mTextureRV);
 
 	g_Dx11.context->OMSetBlendState(mBlendState, 0, 0xFFFFFFFF);
 	g_Dx11.context->Draw(mQuad->mVertexCount, 0);

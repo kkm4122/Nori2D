@@ -24,6 +24,7 @@ ecs_id_t RenderSysID2;
 const WCHAR* g_Tex_Name[] = {
     L"Image\\Carrot.png",
     L"Image\\TownHall.png",
+    L"Image\\Ultralisk.png",
 };
 
 void register_components()
@@ -93,9 +94,8 @@ ecs_ret_t Render_System(ecs_t* ecs,
     rd.ancherY = 0.5f;
     rd.h = 100;
     rd.w = 100;
-    rd.texName = g_Tex_Name[0];
-    rd.tex = nullptr;
-    rd.vb = nullptr;
+    rd.tex.mName = g_Tex_Name[0];
+    rd.tex.mTextureRV = nullptr;
 
     (void)udata;
     printf("Render_System = %d \n", entity_count);
@@ -115,13 +115,19 @@ ecs_ret_t Render_System(ecs_t* ecs,
         rd.h = img->h;
         rd.ancherX = img->ancherX; 
         rd.ancherY = img->ancherY; 
-        rd.texName = img->texName;
-        rd.tex = (ID3D11ShaderResourceView*)img->tex;
+        rd.tex.mName = img->texName;
+        rd.tex.mTextureRV = (ID3D11ShaderResourceView*)img->tex;
+        rd.dir = img->dir;
+        rd.AnimTime = img->AnimTime;
+        rd.frameNo = img->frameNo;
         
         g_ECS_Renderer->Draw2(&rd);
 
-        img->tex = rd.tex;
-    }
+        img->tex = rd.tex.mTextureRV;   // 저장..
+        img->AnimTime = rd.AnimTime;    // 저장..
+        img->frameNo = rd.frameNo;      // 저장..
+        img->dir = rd.dir;
+    }   
 
     return 0;
 }
@@ -189,9 +195,12 @@ void create_entity1()
     img->ancherY = 0.5f;
     img->w = 100;
     img->h = 100;
-    img->texName = g_Tex_Name[0];
+    img->texName = g_Tex_Name[2];
     img->tex = nullptr;
 
+	img->frameNo = 0;
+	img->AnimTime = 0;
+    img->dir = 0;
 }
 
 void create_entity2()
@@ -216,6 +225,10 @@ void create_entity2()
     img->h = 100;
     img->texName = g_Tex_Name[1];
     img->tex = nullptr;
+
+	img->frameNo = 0;
+	img->AnimTime = 0;
+    img->dir = 0;
 
 }
 

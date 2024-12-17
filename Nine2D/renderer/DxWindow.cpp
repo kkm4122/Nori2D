@@ -386,7 +386,7 @@ void DxWindow::Update()
 
 void DxWindow::Draw()
 {
-	const float color[4] = { 0.4f, 0.4f, 0.4f, 0.0f };
+	const float color[4] = { 0.9f, 0.9f, 0.9f, 1.0f };
 	int count = 0;
 
 	g_Dx11.context->ClearRenderTargetView(g_Dx11.backBufferRTV,

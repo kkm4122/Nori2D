@@ -1,3 +1,3 @@
 #pragma once
 
-#define ULTRA_NAME L"Image\\Ultralisk.png"
+static const WCHAR* ULTRA_NAME = L"Image\\Ultralisk.png";

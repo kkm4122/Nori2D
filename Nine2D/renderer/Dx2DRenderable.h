@@ -3,7 +3,8 @@
 
 struct VERTEX;
 
-struct Dx2DRenderable 
+
+struct Renderable
 {
 	Vec2 position;
 	float angle;
@@ -11,29 +12,21 @@ struct Dx2DRenderable
 	float w,h;
 	float ancherX,  ancherY;
 	XFloat4 color;
+
 	int dir;
 	int frameNo;
 	float AnimTime;
-
-	DxTexture tex;
 
 };
 
-struct Dx2DRenderable2
+struct Dx2DRenderable : public Renderable
 {
-	Vec2 position;
-	float angle;
+	DxTexture tex;
+};
 
-	float w,h;
-	float ancherX, ancherY;
-	XFloat4 color;
-	int dir;
-	int frameNo;
-	float AnimTime;
-
-	const WCHAR* texName = nullptr;
-	ID3D11ShaderResourceView* tex = nullptr;
-	ID3D11Buffer *vb = nullptr;
+struct Dx2DRenderable2 : public Renderable
+{
+	STexture tex;
 };
 
 

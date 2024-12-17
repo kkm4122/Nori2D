@@ -10,18 +10,18 @@ using namespace DirectX;
 
 DxTextureMgr* g_DxTextureMgr = nullptr;
 
+
+void STexture::Draw()
+{
+	g_Dx11.context->PSSetShaderResources(0, 1, &mTextureRV);
+}
+
 DxTexture::~DxTexture()
 {
 	if (mTextureRV) {
 		ULONG refcount = mTextureRV->Release();
 		if (refcount==0) DxTextureMgr::get()->Delete(this);
 	}
-}
-
-void DxTexture::Draw()
-{
-	g_Dx11.context->PSSetShaderResources(0, 1, &mTextureRV);
-
 }
 
 DxTextureMgr* DxTextureMgr::get()
