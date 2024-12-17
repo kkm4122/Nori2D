@@ -22,6 +22,20 @@ void MoveAction::RandomTarget(Actor* aa)
     aa->mSpeed = target - aa->mRd.position;
     aa->mSpeed.normalize();
     aa->mSpeed *= 100.f;
+
+    float angle = aa->mSpeed.getAngle();
+    angle = MATH_RAD_TO_DEG(angle);
+    char buf[128];
+    sprintf_s(buf, 128, "%.1f\n", angle);
+    OutputDebugStringA(buf);
+
+    if (angle > 0)
+    {
+
+    }
+    else
+
+    //aa->mRd.dir
 }
 
 void MoveAction::Update(Actor* aa, float delta)

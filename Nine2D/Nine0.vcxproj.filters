@@ -96,6 +96,8 @@
     <ClInclude Include="renderer\Quad.h">
       <Filter>Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="AnimationData.h" />
+    <ClInclude Include="preDefines.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tk\DDSTextureLoader.cpp">

@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Actor1.h" />
+    <ClInclude Include="AnimationData.h" />
     <ClInclude Include="base\MathBase.h" />
     <ClInclude Include="base\RefObject.h" />
     <ClInclude Include="base\Vec2.h" />
@@ -145,6 +146,7 @@
     <ClInclude Include="IGame.h" />
     <ClInclude Include="Nine0.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="preDefines.h" />
     <ClInclude Include="renderer\ConstantBuffer.h" />
     <ClInclude Include="renderer\Dx2DRenderable.h" />
     <ClInclude Include="renderer\Dx2DRenderer.h" />

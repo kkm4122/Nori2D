@@ -34,7 +34,7 @@ void DemoGame::Update(float delta)
 
 void DemoGame::sample()
 {
-	for(int i=0; i<2000; ++i) {
+	for(int i=0; i<1; ++i) {
 		sample1();
 	}
 }
@@ -50,7 +50,10 @@ void DemoGame::sample1()
 	aa->mRd.ancherY = 0.5f;
 	aa->mSpeed = {10.f,5.f};
 	aa->mRd.color = {1.0f, 1.0f, 1.0f, 1.0f};
-	aa->mRd.tex.mName = L"Image\\Carrot.png";
+	aa->mRd.dir = 0;
+	aa->mRd.frameNo = 0;
+	aa->mRd.AnimTime = 0;
+	aa->mRd.tex.mName = ULTRA_NAME;
 
 	auto mv1 = new MoveAction;
 	mv1->RandomTarget(aa);
