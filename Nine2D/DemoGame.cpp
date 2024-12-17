@@ -50,7 +50,7 @@ void DemoGame::sample1()
 	aa->mRd.ancherY = 0.5f;
 	aa->mSpeed = {10.f,5.f};
 	aa->mRd.color = {1.0f, 1.0f, 1.0f, 1.0f};
-	aa->mRd.tex.mName = L"Carrot.png";
+	aa->mRd.tex.mName = L"Image\\Carrot.png";
 
 	auto mv1 = new MoveAction;
 	mv1->RandomTarget(aa);

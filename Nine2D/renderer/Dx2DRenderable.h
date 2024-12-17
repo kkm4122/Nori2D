@@ -9,7 +9,7 @@ struct Dx2DRenderable
 	float angle;
 
 	float w,h;
-	float ancherX, ancherY;
+	float ancherX,  ancherY;
 	XFloat4 color;
 
 	DxTexture tex;

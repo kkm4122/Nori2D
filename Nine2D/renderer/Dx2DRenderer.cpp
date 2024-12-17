@@ -112,6 +112,7 @@ Dx2DRenderer::~Dx2DRenderer()
 void Dx2DRenderer::Draw(Dx2DRenderable* sp)
 {
 	if(sp->tex.isNull()) {
+		//sp->tex.Load()
 		DxTextureMgr::get()->New(sp->tex);
 	}
 
