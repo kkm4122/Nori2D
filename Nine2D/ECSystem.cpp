@@ -22,8 +22,8 @@ ecs_id_t RenderSysID1;
 ecs_id_t RenderSysID2;
 
 const WCHAR* g_Tex_Name[] = {
-    L"Carrot.png",
-    L"TownHall.png",
+    L"Image\\Carrot.png",
+    L"Image\\TownHall.png",
 };
 
 void register_components()

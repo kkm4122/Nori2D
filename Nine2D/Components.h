@@ -89,6 +89,9 @@ struct Img_t
 {
 	float w,h;
 	float ancherX, ancherY;
+	int dir;
+	int frameNo;
+	float AnimTime;
 
 	const WCHAR* texName; 
     void* tex;
@@ -100,12 +103,7 @@ struct Rect_t
     int x, y, w, h;
 } ;
 
-struct Comflab_t
-{
-    float thingy;
-    bool mingy;
-    int dingy;
-};
+
 
 extern ecs_t* ecs1;
 

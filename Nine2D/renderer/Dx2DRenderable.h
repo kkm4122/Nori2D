@@ -11,12 +11,12 @@ struct Dx2DRenderable
 	float w,h;
 	float ancherX,  ancherY;
 	XFloat4 color;
-
-	DxTexture tex;
 	int dir;
 	int frameNo;
-	
 	float AnimTime;
+
+	DxTexture tex;
+
 };
 
 struct Dx2DRenderable2
@@ -27,6 +27,9 @@ struct Dx2DRenderable2
 	float w,h;
 	float ancherX, ancherY;
 	XFloat4 color;
+	int dir;
+	int frameNo;
+	float AnimTime;
 
 	const WCHAR* texName = nullptr;
 	ID3D11ShaderResourceView* tex = nullptr;
