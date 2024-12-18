@@ -336,9 +336,9 @@ LRESULT DxWindow::onMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 // Save the previous mouse position, so we have it for the future
 void DxWindow::OnMouseDown(WPARAM buttonState, int x, int y)
 {
-	// prevMousePos.x = x;
-	// prevMousePos.y = y;
-
+	prevMousePos.x = x;
+	prevMousePos.y = g_Dx11.height - y;
+	mGameObj->getMouse(prevMousePos.x, prevMousePos.y);
 	// Caputure the mouse so we keep getting mouse move
 	// events even if the mouse leaves the window.  we'll be
 	// releasing the capture once a mouse button is released
