@@ -8,6 +8,7 @@ class IGame
 public:
 	virtual void Update(float delta) = 0;
 	virtual void Draw(IRenderer* rd) = 0;
+	virtual void getMouse(int x, int y) = 0;
 };
 
 
