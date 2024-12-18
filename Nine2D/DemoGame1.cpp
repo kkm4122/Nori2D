@@ -48,4 +48,13 @@ void DemoGame1::sample()
 
 }
 
+void DemoGame1::spawnUltra(int x, int y)
+{
+}
+
+void DemoGame1::getMouse(int x, int y)
+{
+	spawnUltra(x, y);
+}
+
 

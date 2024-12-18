@@ -12,7 +12,8 @@ public:
 	DemoGame1();
 	~DemoGame1();
 	void sample();
-
+	void spawnUltra(int x, int y);
+	void getMouse(int x, int y) override;
 	void Update(float delta) override;
 	void Draw(IRenderer* rd) override;
 
